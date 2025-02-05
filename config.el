@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 14))
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 16))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -84,3 +84,15 @@
 (add-to-list 'org-babel-load-languages '(js . t))
 (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 (add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
+
+(use-package org
+  :config
+
+  ;; Hide markup like *BOLD* or =COMMAND=
+  (setq org-hide-emphasis-markers t)
+
+  ;; Add timestamp when turn state TODO to DONE
+  (setq org-log-done 'time)
+
+  ;; Set initial dir visibility to close
+  (setq org-startup-folded t))
