@@ -21,8 +21,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 16))
+(setq doom-font (font-spec :family "Fira Code Nerd Font" :size 16))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -79,11 +78,12 @@
 ;; they are implemented.
 
 ;; Execute JavaScript
-(require 'ob-js)
-
-(add-to-list 'org-babel-load-languages '(js . t))
-(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
-(add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
+(after! org
+  (setq org-babel-load-languages
+        (append org-babel-load-languages '((js . t))))
+  (require 'ob-js) ;; Charger ob-js
+  (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+  (add-to-list 'org-babel-tangle-lang-exts '("js" . "js")))
 
 (use-package org
   :config
